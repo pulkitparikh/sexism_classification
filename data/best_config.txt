@@ -1,0 +1,43 @@
+prob_trans_types = ["di"]; class_imb_flags = [True]; model_types = ["hier_fuse"]; 
+rnn_dims = [100]; att_dims = [200];
+word_feats_l = [[{'emb': 'elmo', 's_enc': 'rnn', 'm_id': '11'}, {'emb': 'glove', 's_enc': 'rnn', 'm_id': '21'}]];
+sent_feats_l = [[{'emb': 'bert_pre', 'm_id': '1'}]];
+num_cnn_filters = [100]; max_pool_k_vals = [1];
+rnn_types = ['lstm']; stack_rnn_flags = [False]; threshes = [0]; cnn_kernel_sets = [[2,3,4]];
+**********
+test_mode = True
+gen_att = True 
+gen_inst_res = False
+
+GPU_ID = '0'
+
+use_saved_model = True 
+save_model = True
+
+use_saved_sent_enc_feats = True
+save_sent_enc_feats = True
+
+use_saved_word_feats = True
+save_word_feats = True
+
+poss_sent_enc_feats_emb_dict = {'use': 512, 'infersent': 4096, 'bert': 1024, 'bert_pre': 768}
+poss_word_feats_emb_dict = {'glove': 300, 'ling': 33, 'elmo': 3072, 'fasttext': 300}
+
+dropO1 = 0.25
+dropO2 = 0.25
+LEARN_RATE = 0.001
+
+BATCH_SIZE = 64
+EPOCHS = 10
+num_runs = 3
+MAX_WORDS_SENT = 35
+RANDOM_STATE = 22
+TEST_RATIO = 0.15
+VALID_RATIO = 0.15
+
+filename = 'data.csv'
+res_filename = "results1.txt"
+res_tsv_filename = "tsv1.txt"
+output_folder_name = "results/"
+data_folder_name = "data/"
+save_folder_name = "saved/"
