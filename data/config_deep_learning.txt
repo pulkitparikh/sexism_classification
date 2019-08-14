@@ -6,7 +6,7 @@ num_cnn_filters = [100]; max_pool_k_vals = [1];
 rnn_types = ['lstm']; stack_rnn_flags = [False]; threshes = [0]; cnn_kernel_sets = [[2,3,4]];
 **********
 test_mode = True
-gen_att = True 
+gen_att = False 
 gen_inst_res = False
 
 GPU_ID = '0'
