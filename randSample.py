@@ -11,7 +11,6 @@ with open(filename) as csvfile:
 	reader = csv.reader(csvfile, delimiter='\t')
 	header = next(reader)
 	origList = list(reader)
-	# print origList
 
 sList = random.sample(origList, sampleSize)
 

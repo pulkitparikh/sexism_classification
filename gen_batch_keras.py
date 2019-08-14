@@ -10,18 +10,13 @@ class TrainGenerator(keras.utils.Sequence):
         self.batch_size = batch_size
         self.labels = labels
         self.list_IDs = list_IDs
-        # self.indexes = np.arange(len(list_IDs))
 
     def __len__(self):
         return int(np.ceil(len(self.list_IDs) / self.batch_size))
-        # return int(np.floor(len(self.list_IDs) / self.batch_size))
 
     def __getitem__(self, index):
-        # indexes = self.indexes[index*self.batch_size:min(len(self.list_IDs),(index+1)*self.batch_size)]
-        # indexes = self.indexes[index*self.batch_size:(index+1)*self.batch_size]
 
         list_IDs_temp = self.list_IDs[index*self.batch_size:min(len(self.list_IDs),(index+1)*self.batch_size)]
-        # list_IDs_temp = [self.list_IDs[k] for k in indexes]
 
         X, y = self.__data_generation(list_IDs_temp)
         return X, y

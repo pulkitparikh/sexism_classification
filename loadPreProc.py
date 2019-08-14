@@ -13,13 +13,13 @@ def is_model_hier(model_type):
   return False
 
 def load_data(filename, data_path, save_path, test_ratio, valid_ratio, rand_state, max_words_sent, test_mode):
-  data_dict_filename = ("%s%s~%s~%s~%s~%s~%s.pickle" % (save_path, filename[:-4], test_ratio, valid_ratio, rand_state, max_words_sent, test_mode))
+  data_dict_filename = ("%sraw_data~%s~%s~%s~%s~%s~%s.pickle" % (save_path, filename[:-4], test_ratio, valid_ratio, rand_state, max_words_sent, test_mode))
   if os.path.isfile(data_dict_filename):
     print("loading input data")
     with open(data_dict_filename, 'rb') as f_data:
         data_dict = pickle.load(f_data)
   else:      
-    cl_in_filename = ("%s%s~%s.pickle" % (save_path, filename[:-4], max_words_sent))
+    cl_in_filename = ("%sraw_data~%s~%s.pickle" % (save_path, filename[:-4], max_words_sent))
     if os.path.isfile(cl_in_filename):
       print("loading cleaned unshuffled input")
       with open(cl_in_filename, 'rb') as f_cl_in:
@@ -48,7 +48,6 @@ def load_data(filename, data_path, save_path, test_ratio, valid_ratio, rand_stat
           text_sen.append(se_list)
 
           cat_list = str(row['category_2']).lower().split(',')
-          # label_ids = [LABEL_MAP[cat] for cat in cat_list]
           label_ids = list(set([LABEL_MAP[cat] for cat in cat_list]))
           label_lists.append(label_ids)
 
@@ -109,13 +108,6 @@ def load_config(filename):
     parts = pair.split('=')
     conf_dict_com[parts[0]] = literal_eval(parts[1])
 
-  # for conf_d in conf_dict_list:
-  #   for (k,v) in conf_d.items():
-  #     print("%s: %s" % (k,v))
-  #   input()
-  # for (k,v) in conf_dict_com.items():
-  #   print("%s: %s" % (k,v))
-
   print("config loaded")
   return conf_dict_list, conf_dict_com
 
@@ -147,7 +139,6 @@ FOR_LMAP = {
   12: 'Motherhood and menstruation related discrimination',
 
   13: 'Other',
-  # 13: 'non-sexist'  
 }
 
 LABEL_MAP = {
@@ -187,8 +178,6 @@ LABEL_MAP = {
   'mansplaining': 13,
   'gaslighting': 13,
   'physical violence': 13,
-  
-  # '': 13
   }
 NUM_CLASSES = len(FOR_LMAP)
 
@@ -204,7 +193,6 @@ def num_to_bin_array(num):
 
 def num_to_label_list(num):
   f_str = ("%sb" % NUM_CLASSES)
-  # print format(num, f_str)
   return [ind for ind, x in enumerate(format(num, f_str)) if x == '1']
 
 def powerset_vec_to_bin_arrays(vec):
@@ -232,12 +220,6 @@ def di_op_to_label_lists(vecs):
         cat_l.append(j)  
     op_list.append(cat_l)    
   return op_list
-
-# def map_labels_to_num_conc(catList):
-#   label_ids = [str(c).zfill(2) for c in catList]
-#   sorted_label_ids = ['9']+sorted(label_ids)
-#   num = int(''.join(sorted_label_ids))
-#   return num
 
 def map_labels_to_num(label_ids):
   arr = [0] * NUM_CLASSES
@@ -316,61 +298,3 @@ def weights_cat(org_lables):
   for i in range(NUM_CLASSES):
     w_arr[i] = len(org_lables)/scores[i]
   return w_arr
-# NUM_CLASSES = 5
-# vecs = [[0,1,1,0,1,0],[1,0,1,0,0,1],[0,0,0,0,0,0],[1,1,1,1,1,1],[1,0,0,0,0,0]]
-# print vecs
-# print br_op_to_label_lists(vecs)
-#----------------
-# filename = 'data/smalljson.csv'
-# data_dict = load_data(filename)
-
-# print data_dict['trainY']
-# print "----------------valY starts----------------------"
-# print data_dict['valY']
-# print "----------------testY starts----------------------"
-# print data_dict['testY']
-
-# print len(data_dict['trainY']), len(data_dict['valY']), len(data_dict['testY'])
-
-# text, labels, num_lp_classes, bac_map = load_label_powerset(filename)
-# print "new labels"
-# print labels
-
-# print powerset_vec_to_label_lists(labels, bac_map)
-
-#----------------
-# # print bac_map
-# # print bac_map[0]
-# y_true_mapped = []
-# for i in range(len(labels)):
-#   y_true_mapped.append(bac_map[labels[i]])
-
-# print "dec to bin labels obtained"
-# print y_true_mapped        
-
-# print labels
-
-# print powerset_vec_to_label_lists(labels)  
-
-# ----------------------
-
-# for t, l_ids in zip(text, label_lists):
-#   print t
-#   print l_ids
-
-# for sample_ind, t in enumerate(text):
-#   h = [l[sample_ind] for l in label_lists_br]
-#   print h
-
-# for arr in powerset_vec_to_bin_arrays(labels):
-#   print arr  
-
-# text, label_lists_br = load_bin_relevance(filename)
-
-# for ind, l in enumerate(label_lists_br):
-#   print ind, l    
-
-# new_lists = br_op_to_label_lists(label_lists_br)
-# print new_lists
-
-# conf_dict_list, conf_dict_com = load_config('data/smallconfig.txt')

@@ -4,8 +4,6 @@ from dlModels import get_model, attLayer_hier, multi_binary_loss, br_binary_loss
 from sklearn.utils import class_weight
 from loadPreProc import *
 from evalMeasures import *
-# from keras.models import load_model
-# from keras.callbacks import ModelCheckpoint
 from keras.utils import to_categorical
 from keras import backend as K
 from gen_batch_keras import TrainGenerator, TestGenerator
@@ -36,7 +34,6 @@ def evaluate_model(mod_op_list, data_dict, bac_map, prob_trans_type, metr_dict, 
                 dif = row_s[:len(row)-1] - row_s[1:]
                 m_ind = dif.argmax()
                 y_pred[ind_row, s_indices[:m_ind+1]] = 1
-                # y_pred[ind_row, row > thresh*max(row)] = 1  
         else:
             mod_op = np.squeeze(mod_op, -1)
             y_pred = np.rint(mod_op).astype(int)
@@ -60,7 +57,6 @@ def evaluate_model(mod_op_list, data_dict, bac_map, prob_trans_type, metr_dict, 
     if att_flag:
         true_vals_multi_hot = trans_labels_multi_hot(true_vals)
         for ind, data_ind in enumerate(range(data_dict['test_st_ind'], data_dict['test_en_ind'])):
-        # for ind, post in enumerate(data_dict['text_sen'][data_dict['test_st_ind']:data_dict['test_en_ind']]):
             att_path = "%satt_info/%s/" % (output_folder_name, fname_part_r_ind)
             os.makedirs(att_path, exist_ok=True)
             true_vals_multi_hot_ind = true_vals_multi_hot[ind].tolist()
@@ -103,7 +99,7 @@ def evaluate_model(mod_op_list, data_dict, bac_map, prob_trans_type, metr_dict, 
 
     return pred_vals, true_vals, calc_metrics_print(pred_vals, true_vals, metr_dict)
 
-def train_predict(word_feats, sent_feats, trainY, data_dict, model_type, num_cnn_filters, rnn_type, fname_part, loss_func, class_w, nonlin, out_vec_size, rnn_dim, att_dim, max_pool_k_val, stack_rnn_flag, cnn_kernel_set, m_ind, run_ind, save_folder_name, use_saved_model, gen_att, learn_rate, dropO1, dropO2, batch_size, num_epochs, save_model):
+def train_predict(word_feats, sent_enc_feats, trainY, data_dict, model_type, num_cnn_filters, rnn_type, fname_part, loss_func, class_w, nonlin, out_vec_size, rnn_dim, att_dim, max_pool_k_val, stack_rnn_flag, cnn_kernel_set, m_ind, run_ind, save_folder_name, use_saved_model, gen_att, learn_rate, dropO1, dropO2, batch_size, num_epochs, save_model):
     att_op = None
     fname_mod_op = ("%s%s/iop~%d~%d.pickle" % (save_folder_name, fname_part, m_ind, run_ind))
     if use_saved_model and os.path.isfile(fname_mod_op):
@@ -116,10 +112,10 @@ def train_predict(word_feats, sent_feats, trainY, data_dict, model_type, num_cnn
                 with open(fname_att_op, 'rb') as f:
                     att_op = pickle.load(f)
     else:
-        model, att_mod = get_model(model_type, data_dict['max_post_length'], data_dict['max_num_sent'], data_dict['max_words_sent'], word_feats, sent_feats, learn_rate, dropO1, dropO2, num_cnn_filters, rnn_type, loss_func, nonlin, out_vec_size, rnn_dim, att_dim, max_pool_k_val, stack_rnn_flag, cnn_kernel_set)
-        training_generator = TrainGenerator(np.arange(0, data_dict['train_en_ind']), trainY, word_feats, sent_feats, data_dict, batch_size)
+        model, att_mod = get_model(model_type, data_dict['max_post_length'], data_dict['max_num_sent'], data_dict['max_words_sent'], word_feats, sent_enc_feats, learn_rate, dropO1, dropO2, num_cnn_filters, rnn_type, loss_func, nonlin, out_vec_size, rnn_dim, att_dim, max_pool_k_val, stack_rnn_flag, cnn_kernel_set)
+        training_generator = TrainGenerator(np.arange(0, data_dict['train_en_ind']), trainY, word_feats, sent_enc_feats, data_dict, batch_size)
         model.fit_generator(generator=training_generator, epochs=num_epochs, shuffle=False, verbose=1, use_multiprocessing=False, workers=1)
-        test_generator = TestGenerator(np.arange(data_dict['test_st_ind'], data_dict['test_en_ind']), word_feats, sent_feats, data_dict, batch_size)
+        test_generator = TestGenerator(np.arange(data_dict['test_st_ind'], data_dict['test_en_ind']), word_feats, sent_enc_feats, data_dict, batch_size)
         mod_op = model.predict_generator(generator=test_generator, verbose=1, use_multiprocessing=False, workers=1)
         if gen_att and (att_mod is not None):
             os.makedirs(save_folder_name + fname_part, exist_ok=True)

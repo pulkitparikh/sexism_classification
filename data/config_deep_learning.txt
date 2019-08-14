@@ -1,24 +1,24 @@
 prob_trans_types = ["di"]; class_imb_flags = [True]; model_types = ["hier_fuse"]; 
 rnn_dims = [100]; att_dims = [200];
 word_feats_l = [[{'emb': 'elmo', 's_enc': 'rnn', 'm_id': '11'}, {'emb': 'glove', 's_enc': 'rnn', 'm_id': '21'}]];
-sent_feats_l = [[{'emb': 'bert_pre', 'm_id': '1'}]];
+sent_enc_feats_l = [[{'emb': 'bert_pre', 'm_id': '1'}]];
 num_cnn_filters = [100]; max_pool_k_vals = [1];
 rnn_types = ['lstm']; stack_rnn_flags = [False]; threshes = [0]; cnn_kernel_sets = [[2,3,4]];
 **********
-test_mode = True
+test_mode = False
 gen_att = False 
 gen_inst_res = False
 
 GPU_ID = '0'
 
-use_saved_model = True 
-save_model = True
+use_saved_model = False 
+save_model = False
 
-use_saved_sent_enc_feats = True
-save_sent_enc_feats = True
+use_saved_sent_enc_feats = False
+save_sent_enc_feats = False
 
-use_saved_word_feats = True
-save_word_feats = True
+use_saved_word_feats = False
+save_word_feats = False
 
 poss_sent_enc_feats_emb_dict = {'use': 512, 'infersent': 4096, 'bert': 1024, 'bert_pre': 768}
 poss_word_feats_emb_dict = {'glove': 300, 'ling': 33, 'elmo': 3072, 'fasttext': 300}

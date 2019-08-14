@@ -1,4 +1,3 @@
-# import io
 import os
 import numpy as np
 import pickle
@@ -40,7 +39,6 @@ def comb_vocab_dict(feat_name, embed_size, data_dict, test_mode, data_fold_path,
 			comb_vocab[w] = np.zeros((embed_size))
 
 		if feat_name == 'glove':
-			# vector_file = 'word_vectors/' + 'glove.840B' + '.' + str(embed_size) + 'd.txt'
 		    vector_file = data_fold_path + 'word_sent_embed/glove.txt'
 		elif feat_name == 'fasttext':
 			vector_file = data_fold_path + 'word_sent_embed/fasttext.vec'
@@ -134,10 +132,6 @@ def prep_Xdata_both(var_hier, data_dict, test_mode, save_fold_path, dir_filepath
 		print("loading pad data for %s; test mode = %s" % (var_hier, test_mode))
 		with open(filename, "rb") as f:
 			pad_data = pickle.load(f) 
-		# with h5py.File(filename, "r") as hf:
-		# 	trainX = hf["trainX"][:]
-		# 	testX = hf["testX"][:]
-		# 	vocab = hf["vocab"][:]
 	else:
 		if var_hier == True:
 			pad_data = prep_Xdata_sent(data_dict['text_sen'][:data_dict['test_en_ind']], t, data_dict['max_num_sent'], data_dict['max_words_sent'])
@@ -146,10 +140,6 @@ def prep_Xdata_both(var_hier, data_dict, test_mode, save_fold_path, dir_filepath
 		print("saving pad data for %s; test mode = %s" % (var_hier, test_mode))
 		with open(filename, "wb") as f:
 			pickle.dump(pad_data, f) 
-		# with h5py.File(filename, "w") as hf:
-		#     hf.create_dataset("trainX", data=trainX)
-		#     hf.create_dataset("testX", data=testX)
-		#     hf.create_dataset("vocab", data=vocab)
 	for ID, feats_ID in enumerate(pad_data):
 		np.save(dir_filepath + str(ID) + '.npy', feats_ID)			
 	return vocab, pad_data.shape[1:]
@@ -157,11 +147,8 @@ def prep_Xdata_both(var_hier, data_dict, test_mode, save_fold_path, dir_filepath
 def elmo_apply_sen(ID, elmo_word_feat, data_dict, filepath, emb_size):
 	saved_arr =  np.load(filepath)
 	feats_ID = np.zeros((data_dict['max_num_sent'], data_dict['max_words_sent'], emb_size))
-	# num_sents = len(data_dict['text_sen'][ID])
-	# l_sen = min(num_sents, data_dict['max_num_sent'])
 	cur_sen_st = 0
 	for ind_sen in range(elmo_word_feat['n_sents_lim'][ID]):
-		# feats_ID[ind_sen, :, :] = saved_arr[cur_sen_st:cur_sen_st+data_dict['n_words_sent_lim'][ID][ind_sen], :]
 		next_sen_st = cur_sen_st+elmo_word_feat['n_words_sent'][ID][ind_sen]
 		feats_ID[ind_sen, :elmo_word_feat['n_words_sent'][ID][ind_sen], :] = saved_arr[cur_sen_st:next_sen_st, :]
 		cur_sen_st = next_sen_st
@@ -238,12 +225,12 @@ def word_featurize(word_feats_raw, model_type, data_dict, poss_word_feats_emb_di
 			if word_feat_name == 'glove' or word_feat_name == 'fasttext':
 				comb_vocab = comb_vocab_dict(word_feat_name, poss_word_feats_emb_dict[word_feat_name], data_dict, test_mode, data_fold_path, save_fold_path, use_saved_word_feats, save_word_feats)
 				if var_tune == True:
-					ad_word_feats['filepath'] = save_fold_path + word_feat_name + '/' + str(var_model_hier) + '/' + str(var_tune) + '/' + str(test_mode) + '/'
+					ad_word_feats['filepath'] = save_fold_path + 'word_vecs~' + word_feat_name + '/' + str(var_model_hier) + '/' + str(var_tune) + '/' + str(test_mode) + '/'
 					os.makedirs(ad_word_feats['filepath'], exist_ok=True)
 					vocab, ad_word_feats['dim_shape'] = prep_Xdata_both(var_model_hier, data_dict, test_mode, save_fold_path, ad_word_feats['filepath'])
 					ad_word_feats['embed_mat'] = get_embed_mat(word_feat_name, poss_word_feats_emb_dict[word_feat_name], vocab, comb_vocab, test_mode, save_fold_path, use_saved_word_feats, save_word_feats)
 				else:
-					ad_word_feats['filepath'] = save_fold_path + word_feat_name + '/' + str(var_model_hier) + '/' + str(var_tune) + '/'
+					ad_word_feats['filepath'] = save_fold_path + 'word_vecs~' + word_feat_name + '/' + str(var_model_hier) + '/' + str(var_tune) + '/'
 					os.makedirs(ad_word_feats['filepath'], exist_ok=True)
 					if var_model_hier == True:
 						prep_X_sent_no_trainable(data_dict['text_sen'], comb_vocab, poss_word_feats_emb_dict[word_feat_name], data_dict['max_num_sent'], data_dict['max_words_sent'], ad_word_feats['filepath'])
@@ -251,9 +238,8 @@ def word_featurize(word_feats_raw, model_type, data_dict, poss_word_feats_emb_di
 					else:
 						prep_X_no_trainable(data_dict['text'], comb_vocab, poss_word_feats_emb_dict[word_feat_name], data_dict['max_post_length'], ad_word_feats['filepath'])
 						ad_word_feats['dim_shape'] = [data_dict['max_post_length'], poss_word_feats_emb_dict[word_feat_name]]
-					# ad_word_feats['embed_mat'] = [0]
 			elif word_feat_name == 'ling':
-				ad_word_feats['filepath'] = save_fold_path + word_feat_name + '/' + str(var_model_hier) + '/' + str(var_tune) + '/'
+				ad_word_feats['filepath'] = save_fold_path + 'word_vecs~' + word_feat_name + '/' + str(var_model_hier) + '/' + str(var_tune) + '/'
 				os.makedirs(ad_word_feats['filepath'], exist_ok=True)
 				emotion_embed_dict, neut, sentiment_embed_dict, sen_neut, perma_embed_dict, perma_neut, word_embed_dict, word_neut, ling_word_vec_dim = load_ling_word_vec_dicts(data_fold_path)
 				if var_model_hier == True:
@@ -263,24 +249,19 @@ def word_featurize(word_feats_raw, model_type, data_dict, poss_word_feats_emb_di
 					ad_word_feats['dim_shape'] = [data_dict['max_post_length'], poss_word_feats_emb_dict[word_feat_name]]
 					ling_word_feat_posts(data_dict['text'], data_dict['max_post_length'], emotion_embed_dict, neut, sentiment_embed_dict, sen_neut, perma_embed_dict, perma_neut, word_embed_dict, word_neut, ling_word_vec_dim, ad_word_feats['filepath'])
 			elif word_feat_name == 'elmo':
-				ad_word_feats['filepath'] = save_fold_path + word_feat_name + '/' + str(var_tune) + '/'
-				if not os.path.isfile(ad_word_feats['filepath'] + '0.npy'):
+				ad_word_feats['filepath'] = save_fold_path + 'word_vecs~' + word_feat_name + '/' + str(var_tune) + '/'
+				if (use_saved_word_feats == False) or (not os.path.isfile(ad_word_feats['filepath'] + '0.npy')):
 					os.makedirs(ad_word_feats['filepath'], exist_ok=True)
 					elmo = ElmoEmbedder()
 					elmo_save_no_pad(data_dict, elmo, ad_word_feats['filepath'], poss_word_feats_emb_dict[word_feat_name])
 				ad_word_feats['emb_size'] = poss_word_feats_emb_dict[word_feat_name]
 				elmo_comp_stats(ad_word_feats, data_dict)
 				if var_model_hier == True:
-					# elmo_save_sen('train', data_dict['train_sen'], data_dict, elmo, ad_word_feats['filepath'])
-					# elmo_save_sen('test', data_dict['test_sen'], data_dict, elmo, ad_word_feats['filepath'])
 					ad_word_feats['func'] = elmo_apply_sen
 					ad_word_feats['dim_shape'] = [data_dict['max_num_sent'], data_dict['max_words_sent'], poss_word_feats_emb_dict[word_feat_name]]
 				else:
-					# elmo_save(data_dict['train_sen'], data_dict, elmo, ad_word_feats['filepath'])
-					# elmo_save(data_dict['train_sen'], data_dict, elmo, ad_word_feats['filepath'])
 					ad_word_feats['func'] = elmo_apply
 					ad_word_feats['dim_shape'] = [data_dict['max_post_length'], poss_word_feats_emb_dict[word_feat_name]]
-				# ad_word_feats['embed_mat'] = [0]
 			if save_word_feats:
 				print("saving ad_word_feats for %s" % comb_str)
 				with open(di_filename, "wb") as f:
