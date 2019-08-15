@@ -1,4 +1,4 @@
-*********
+**********
 poss_word_feats_emb_dict = {'glove': 300, 'elmo': 3072}
 test_mode = True
 MAX_WORDS_SENT = 35
