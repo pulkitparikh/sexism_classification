@@ -54,7 +54,7 @@ def evaluate_model(mod_op_list, data_dict, bac_map, prob_trans_type, metr_dict, 
                 y_pred_list[arg_max_br_lists[i]][i] = 1
         pred_vals = br_op_to_label_lists(y_pred_list)
   
-    if att_flag:
+    if att_flag and (mod_op_list[0][1] is not None):
         true_vals_multi_hot = trans_labels_multi_hot(true_vals)
         for ind, data_ind in enumerate(range(data_dict['test_st_ind'], data_dict['test_en_ind'])):
             att_path = "%satt_info/%s/" % (output_folder_name, fname_part_r_ind)

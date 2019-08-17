@@ -1,3 +1,5 @@
+gen_ids_data_release.py
+regex_annonymize.py
 clean_res.py
 auto_encode.py
 att_visualize.py
