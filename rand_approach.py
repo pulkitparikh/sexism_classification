@@ -17,8 +17,6 @@ def train_evaluate_model(trainY_list, true_vals, metr_dict):
 		for l in lset:
 			train_coverage[l] += 1.0
 	train_coverage /= float(len(trainY_list))
-	print(train_coverage)
-	print(np.mean(train_coverage))
 
 	r_op = np.empty((len(trainY_list), NUM_CLASSES), dtype=int)
 	for i in range(len(trainY_list)):
