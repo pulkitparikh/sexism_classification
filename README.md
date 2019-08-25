@@ -1,5 +1,9 @@
 # sexism_classification
-We hereby release the code that was used for the experiments reported in our EMNLP 2019 paper titled 'Multi-label Categorization of Accounts of Sexism using a Neural Framework'. The code, in fact, provides some additional functionality as well. Any further information about the code can be obtained by emailing me (my email id is mentioned in the paper). The following are brief descriptions of the contents of this repository.
+We hereby release the code that was used for the experiments reported in our EMNLP 2019 paper titled 'Multi-label Categorization of Accounts of Sexism using a Neural Framework'. The code, in fact, provides some additional functionality as well. 
+
+Our implementation utilizes parts of the code from [1, 2, 3] and libraries Keras and Scikit-learn [4].
+
+Any further information about the code can be obtained by emailing me (my email id is mentioned in the paper). The following are brief descriptions of the contents of this repository.
 
 1) main.py
 
@@ -65,3 +69,13 @@ We hereby release the code that was used for the experiments reported in our EMN
 
 - Configuration file for traditional machine learning methods
 
+References:
+
+[1] Sweta Agrawal and Amit Awekar. 2018. Deep learning for detecting cyberbullying across multiple social media platforms. In European Conference on Information Retrieval, pages 141–153. Springer.
+
+[2] Nikhil Pattisapu, Manish Gupta, Ponnurangam Kumaraguru, and Vasudeva Varma. 2017. Medical persona classification in social media. In Proceedings of the 2017 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining
+2017, pages 377–384. ACM.   
+
+[3] Richard Liao. 2017. textclassifier. https://github.com/richliao/textClassifier.
+
+[4] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. 2011. Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12:2825–2830.
