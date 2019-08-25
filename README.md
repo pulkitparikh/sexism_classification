@@ -1,5 +1,5 @@
 # sexism_classification
-We hereby release the code that was used for the experiments reported in our EMNLP 2019 submission. The code, in fact, provides some additional functionality as well. We have anonymized paths and other things that could reveal the identity of the authors. Any further information about the code can be obtained by emailing the authors. The following are brief descriptions of the contents of this code directory.
+We hereby release the code that was used for the experiments reported in our EMNLP 2019 paper titled 'Multi-label Categorization of Accounts of Sexism using a Neural Framework'. The code, in fact, provides some additional functionality as well. Any further information about the code can be obtained by emailing me (my email id is mentioned in the paper). The following are brief descriptions of the contents of this repository.
 
 1) main.py
 
