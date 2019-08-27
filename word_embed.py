@@ -6,7 +6,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from allennlp.commands.elmo import ElmoEmbedder
 from ling_word_feats import load_ling_word_vec_dicts, ling_word_feat_sen_posts, ling_word_feat_posts
-from loadPreProc import is_model_hier 
+from load_preproc import is_model_hier 
 
 def init_comb_vocab_word_list(data_dict):
 	comb_vocab_word_list_dict = {}

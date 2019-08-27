@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from loadPreProc import NUM_CLASSES, FOR_LMAP
+from load_preproc import NUM_CLASSES, FOR_LMAP
 
 def rec_label(tp, fn):
 	if (tp + fn) == 0:

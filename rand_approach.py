@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
-from loadPreProc import *
-from evalMeasures import *
+from load_preproc import *
+from eval_measures import *
 import sys
 
 conf_dict_list, conf_dict_com = load_config(sys.argv[1])

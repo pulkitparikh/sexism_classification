@@ -1,12 +1,11 @@
-import sys
 import numpy as np
 import os, sys, pickle, csv, sklearn
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.svm import SVC, LinearSVC
 from sklearn.ensemble  import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from evalMeasures import *
-from loadPreProc import *
+from eval_measures import *
+from load_preproc import *
 from string import punctuation
 from word_embed import *
 import nltk

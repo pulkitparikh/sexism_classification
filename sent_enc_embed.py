@@ -9,7 +9,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from bert_serving.client import ConcurrentBertClient
 from keras.models import load_model
-from loadPreProc import is_model_hier 
+from load_preproc import is_model_hier 
 
 def tuned_embed_posts(posts, max_sent_cnt, org_embed_dim, embed_dim, mod_name, base_feat_Name, base_feat_filename, func_name, use_saved_sent_enc_feats, data_fold_path, save_fold_path):
 	posts_arr = np.zeros((len(posts), max_sent_cnt, embed_dim))
