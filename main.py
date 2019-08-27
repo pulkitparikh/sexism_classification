@@ -3,7 +3,7 @@ import time
 import sys
 from sent_enc_embed import sent_enc_featurize
 from word_embed import word_featurize
-from neuralApproaches import *
+from neural_approaches import *
 
 sys.setrecursionlimit(10000)
 conf_dict_list, conf_dict_com = load_config(sys.argv[1])

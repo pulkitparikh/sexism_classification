@@ -60,7 +60,7 @@ def classification_model(X_train, X_test, y_train, y_tested, model_type,bac_map)
     print ("F_metrics_label_macro", Fmacro[2])
 
 def get_model(m_type):
-    if m_type == 'logistic regression':
+    if m_type == 'logistic_regression':
         logreg = LogisticRegression()
     elif m_type == "random_forest":
         logreg = RandomForestClassifier(n_estimators=conf_dict_com['n_estimators'], n_jobs=-1, class_weight=conf_dict_com['class_weight'])
@@ -69,7 +69,7 @@ def get_model(m_type):
     elif m_type == "GBT":
         logreg = GradientBoostingClassifier(n_estimators= conf_dict_com['n_estimators'])
     else:
-        print ("ERROR: Please specify a correst model")
+        print ("ERROR: Please specify a correct model")
         return None
     return logreg
 
@@ -201,7 +201,7 @@ def train(data_dict, labels, MODEL_TYPE,feat_type, bac_map,n_class,conf_dict_com
             classification_model(train_features, test_features, labels, data_dict['lab'][data_dict['test_st_ind']:data_dict['test_en_ind']], model_name, bac_map)
 
 
-start = time.time()
+startTime = time.time()
 conf_dict_list, conf_dict_com = load_config(sys.argv[1])
 
 data_dict = load_data(conf_dict_com['filename'], conf_dict_com['data_path'], conf_dict_com['save_path'], conf_dict_com['TEST_RATIO'], conf_dict_com['VALID_RATIO'], conf_dict_com['RANDOM_STATE'], conf_dict_com['MAX_WORDS_SENT'], conf_dict_com['test_mode'])
@@ -209,5 +209,6 @@ labels,n_class,bac_map,for_map =fit_trans_labels_powerset(data_dict['lab'][:data
 
 train(data_dict, labels, conf_dict_com['MODEL_TYPE'],conf_dict_com['feat_type'],bac_map,n_class,conf_dict_com)
 timeLapsed = int(time.time() - startTime + 0.5)
+hrs = timeLapsed/3600
 t_str = "%.1f hours = %.1f minutes over %d hours\n" % (hrs, (timeLapsed % 3600)/60.0, int(hrs))
 print(t_str)

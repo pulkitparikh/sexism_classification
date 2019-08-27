@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from dlModels import get_model, attLayer_hier, multi_binary_loss, br_binary_loss, lp_categ_loss, multi_cat_w_loss, multi_cat_loss, kmax_pooling
+from dl_models import get_model, attLayer_hier, multi_binary_loss, br_binary_loss, lp_categ_loss, multi_cat_w_loss, multi_cat_loss, kmax_pooling
 from sklearn.utils import class_weight
 from load_preproc import *
 from eval_measures import *
