@@ -1,7 +1,7 @@
 # sexism_classification
 We hereby release the code that was used for the experiments reported in our following EMNLP 2019 paper:
 
-Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. To be published in Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)
+Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. To be published in *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*
 
 The code, in fact, provides some additional functionality as well. Our implementation utilizes parts of the code from [1, 2, 3] and libraries Keras and Scikit-learn [4]. The following are brief descriptions of the contents of this repository. Any further information about the code can be obtained by emailing me (my email id is mentioned in the paper).
 
