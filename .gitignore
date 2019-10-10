@@ -1,3 +1,6 @@
+dataset_request_html/
+emnlp_pdfs_changes_last_day/
+*.zip
 gen_ids_data_release.py
 regex_annonymize.py
 clean_res.py

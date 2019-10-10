@@ -130,7 +130,7 @@ FOR_LMAP = {
   
   8: 'Sexual assault',
   
-  9: 'Sexual harassment (excluding physical contact)',
+  9: 'Sexual harassment (excluding assault)',
   
   10: 'Moral policing and victim blaming',
   
