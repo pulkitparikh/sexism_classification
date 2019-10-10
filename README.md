@@ -1,8 +1,7 @@
 # sexism_classification
 We hereby release the code that was used for the experiments reported in our following EMNLP 2019 paper:
 
-Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. To be published in Proceedings of the 2019 Con-
-ference on Empirical Methods in Natural Language Processing (EMNLP)
+Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. To be published in *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*
 
 The code, in fact, provides some additional functionality as well. Our implementation utilizes parts of the code from [1, 2, 3] and libraries Keras and Scikit-learn [4]. The following are brief descriptions of the contents of this repository. Any further information about the code can be obtained by emailing me (my email id is mentioned in the paper).
 
@@ -70,6 +69,9 @@ The code, in fact, provides some additional functionality as well. Our implement
 
 - Configuration file for traditional machine learning methods
 
+<!---
+Under the guidance of a social scientist, we created a dataset of 13000+ accounts of sexism annotated with one or more of 23 carefully formulated categories of sexism by ten people, most of whom have formally studied gender and/or sexuality. We are committed to ensuring that data is used and released ethically, which includes protecting the privacy and anonymity of the victims. Our full dataset [can be requested](https://irel.iiit.ac.in/sexism-classification/dataset-request) for academic purposes alone by providing some prerequisites as recommended by an ethics committee and agreeing to certain terms. The requesters who fulfill these preconditions will be given the data in such a way that an account that gets removed from ESP by a victim (or contributor) will no longer be included in the data yielded by our script.
+-->
 References:
 
 [1] Sweta Agrawal and Amit Awekar. 2018. Deep learning for detecting cyberbullying across multiple social media platforms. In European Conference on Information Retrieval, pages 141–153. Springer.
