@@ -142,42 +142,42 @@ FOR_LMAP = {
 }
 
 LABEL_MAP = {
-  'role stereotyping': 0,
+  'Role stereotyping': 0,
   
-  'attribute stereotyping': 1,
+  'Attribute stereotyping': 1,
   
-  'hyper-sexualization': 2,
+  'Hyper-sexualization (excluding body shaming)': 2,
   
-  'internalized sexism': 3,
+  'Internalized sexism': 3,
   
-  'hostile work environment': 4, 
-  'pay gap': 4,
+  'Hostile work environment (excluding pay gap)': 4, 
+  'Pay gap': 4,
   
-  'body shaming': 5,
+  'Body shaming': 5,
 
-  'denial or trivialisation': 6, 
+  'Denial or trivialization of sexist misconduct': 6, 
   
-  'threats': 7, 
+  'Threats': 7, 
   
-  'sexual assault': 8,
-  'rape': 8,
+  'Sexual assault (excluding rape)': 8,
+  'Rape': 8,
   
-  'sexual harassment': 9,
+  'Sexual harassment (excluding assault)': 9,
   
-  'moral policing': 10,
-  'tone policing': 10,
-  'victim blaming': 10,
+  'Tone policing': 10,
+  'Moral policing (excluding tone policing)': 10,
+  'Victim blaming': 10,
   
-  'slut shaming': 11,
+  'Slut shaming': 11,
   
-  'mom shaming': 12,
-  'period shaming': 12,
+  'Motherhood-related discrimination': 12,
+  'Menstruation-related discrimination': 12,
 
-  'other': 13,
-  'religion-based sexism': 13,
-  'mansplaining': 13,
-  'gaslighting': 13,
-  'physical violence': 13,
+  'Religion-based sexism': 13,
+  'Mansplaining': 13,
+  'Gaslighting': 13,
+  'Physical violence (excluding sexual violence)': 13,
+  'Other': 13,
   }
 NUM_CLASSES = len(FOR_LMAP)
 
