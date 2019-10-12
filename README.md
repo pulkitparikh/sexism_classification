@@ -1,5 +1,5 @@
 # sexism_classification
-We hereby release the code that was used for the experiments reported in our following EMNLP 2019 paper:
+This code is for the multi-label classification of accounts describing sexism suffered or witnessed. It was used for the experiments reported in our following EMNLP 2019 paper, which we request you to cite if you use this code for any research.
 
 Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. To be published in *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*
 
