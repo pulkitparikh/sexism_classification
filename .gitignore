@@ -1,3 +1,6 @@
+check_files.py
+check_tables.py
+github_code/
 dataset_request_html/
 emnlp_pdfs_changes_last_day/
 *.zip

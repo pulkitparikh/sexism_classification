@@ -116,14 +116,14 @@ FOR_LMAP = {
   
   1: 'Attribute stereotyping',
   
+  5: 'Body shaming',
+
   2: 'Hyper-sexualization (excluding body shaming)',
   
   3: 'Internalized sexism',
   
   4: 'Hostile work environment', 
   
-  5: 'Body shaming',
-
   6: 'Denial or trivialization of sexist misconduct', 
   
   7: 'Threats', 
@@ -146,21 +146,21 @@ LABEL_MAP = {
   
   'Attribute stereotyping': 1,
   
+  'Body shaming': 5,
+
   'Hyper-sexualization (excluding body shaming)': 2,
   
   'Internalized sexism': 3,
   
-  'Hostile work environment (excluding pay gap)': 4, 
   'Pay gap': 4,
+  'Hostile work environment (excluding pay gap)': 4, 
   
-  'Body shaming': 5,
-
   'Denial or trivialization of sexist misconduct': 6, 
   
   'Threats': 7, 
   
-  'Sexual assault (excluding rape)': 8,
   'Rape': 8,
+  'Sexual assault (excluding rape)': 8,
   
   'Sexual harassment (excluding assault)': 9,
   
@@ -174,9 +174,9 @@ LABEL_MAP = {
   'Menstruation-related discrimination': 12,
 
   'Religion-based sexism': 13,
+  'Physical violence (excluding sexual violence)': 13,
   'Mansplaining': 13,
   'Gaslighting': 13,
-  'Physical violence (excluding sexual violence)': 13,
   'Other': 13,
   }
 NUM_CLASSES = len(FOR_LMAP)
