@@ -7,6 +7,10 @@ Sexism, an injustice that subjects women and girls to enormous suffering, manife
 
 If you use this code for any research, please cite:
 
-Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. To be published in *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)*
+Pulkit Parikh, Harika Abburi, Pinkesh Badjatiya, Radhika Krishnan, Niyati Chhaya, Manish Gupta, and Vasudeva Varma. 2019. Multi-label Categorization of Accounts of Sexism using a Neural Framework. In *Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)*, pages 1642-1652
+
+BibTeX:
+
+@inproceedings{parikh-2019-multi, title={Multi-label Categorization of Accounts of Sexism using a Neural Framework}, author={Parikh, Pulkit and Abburi, Harika and Badjatiya, Pinkesh and Krishnan, Radhika and Chhaya, Niyati and Gupta, Manish and Varma, Vasudeva}, booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)}, pages={1642--1652}, year={2019}}
 
 Please read our paper for acknowledgments/references pertaining to this code.
